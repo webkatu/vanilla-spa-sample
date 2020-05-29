@@ -1,0 +1,21 @@
+import App from './App.mjs';
+import AppHeader from './AppHeader.mjs';
+import AppIndex from './AppIndex.mjs';
+import Blog from './Blog.mjs';
+import BlogSignedOutMenu from './BlogSignedOutMenu.mjs';
+import BlogSignedInMenu from './BlogSignedInMenu.mjs';
+import BlogIndex from './BlogIndex.mjs';
+import BlogArticles from './BlogArticles.mjs';
+import BlogArticle from './BlogArticle.mjs';
+import SPAAnchor from './SPAAnchor.mjs';
+
+customElements.define('x-app', App);
+customElements.define('app-header', AppHeader);
+customElements.define('app-index', AppIndex);
+customElements.define('x-blog', Blog);
+customElements.define('blog-signed-out-menu', BlogSignedOutMenu);
+customElements.define('blog-signed-in-menu', BlogSignedInMenu);
+customElements.define('blog-index', BlogIndex);
+customElements.define('blog-articles', BlogArticles);
+customElements.define('blog-article', BlogArticle);
+customElements.define('spa-anchor', SPAAnchor, { extends: 'a' });
