@@ -9,7 +9,7 @@
   $ node index.js
 ```
 
-access to [http://localhost:4000](http://localhost:4000")
+access to [http://localhost:4000/vanilla-spa-sample/](http://localhost:4000/vanilla-spa-sample/")
 
 ## Description
 
