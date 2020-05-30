@@ -4,7 +4,7 @@ import { app } from '../stores/index.mjs';
 
 const html = `
 <app-header></app-header>
-<div class="main"></div>
+<main></main>
 
 <style>
 :host {
@@ -22,7 +22,7 @@ export default class App extends HTMLElement {
 		const shadowRoot = this.attachShadow({mode: 'open'});
 		shadowRoot.innerHTML = html;
 
-		const main = shadowRoot.querySelector('.main');
+		const main = shadowRoot.querySelector('main');
 		const appIndex = document.createElement('app-index');
 		const blog = document.createElement('x-blog');
 		const blogIndex = document.createElement('blog-index');
