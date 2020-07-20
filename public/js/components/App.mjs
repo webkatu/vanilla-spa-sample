@@ -1,6 +1,6 @@
 import page from 'https://unpkg.com/page@1.11.6/page.mjs';
 import blogActions from '../actions/blogActions.mjs';
-import { app } from '../stores/index.mjs';
+import { app, article } from '../stores/index.mjs';
 
 const html = `
 <app-header></app-header>
@@ -39,23 +39,27 @@ export default class App extends HTMLElement {
 
 		page('/', () => {
 			main.append(appIndex);
+			document.title = app.title;
 		});
 
 		page('/blog/', () => {
 			blog.childComponent = blogIndex;
 			main.append(blog);
+			document.title = `Blog | ${app.title}`;
 		});
 
 		page('/blog/articles/', () => {
 			blogActions.fetchArticles();
 			blog.childComponent = blogArticles;
 			main.append(blog);
+			document.title = `Articles | ${app.title}`
 		});
 
-		page('/blog/articles/:id/', (ctx) => {
-			blogActions.fetchArticle(ctx.params.id);
+		page('/blog/articles/:id/', async (ctx) => {
 			blog.childComponent = blogArticle;
 			main.append(blog);
+			await blogActions.fetchArticle(ctx.params.id);
+			document.title = `${article.articleInfo.title} | ${app.title}`;
 		});
 
 		page('*', () => {
@@ -64,9 +68,5 @@ export default class App extends HTMLElement {
 		});
 
 		page.start({ click: false });
-	}
-
-	connectedCallback() {
-		document.title = app.title;
 	}
 }

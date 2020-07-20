@@ -1,3 +1,4 @@
+import blogActions from '../actions/blogActions.mjs';
 import { app, article } from '../stores/index.mjs';
 
 const html = `
@@ -29,6 +30,7 @@ export default class BlogArticle extends HTMLElement {
 
 	disconnectedCallback() {
 		article.removeEventListener('CHANGE', this.handleArticleChange);
+		blogActions.initBlogArticle();
 	}
 
 	handleArticleChange() {
@@ -68,7 +70,5 @@ export default class BlogArticle extends HTMLElement {
 		this.a.textContent = val.title;
 
 		this.articleContent.textContent = val.content;
-
-		document.title = `${val.title} | ${app.title}`;
 	}
 }

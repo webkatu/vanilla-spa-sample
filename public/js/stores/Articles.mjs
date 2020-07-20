@@ -11,7 +11,7 @@ export default class Articles extends EventTarget {
 		Object.assign(this, JSON.parse(JSON.stringify(initialState)));
 	
 		dispatcher.addEventListener('fetchArticlesSuccessful', (e) => {
-			this.articleList = Array.from(e.detail.json);
+			this.articleList = Array.from(e.detail);
 			this.dispatchEvent(new Event('CHANGE'));
 		})
 	}

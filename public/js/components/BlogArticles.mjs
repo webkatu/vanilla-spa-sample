@@ -39,7 +39,5 @@ export default class BlogArticles extends HTMLElement {
 			li.innerHTML = `<a is="spa-anchor" href=${app.deploy}/blog/articles/${article.id}/>${article.title}</a>`;
 			this.ul.append(li);
 		});
-
-		document.title = `Articles | ${app.title}`
 	}
 }

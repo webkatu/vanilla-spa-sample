@@ -12,8 +12,4 @@ export default class BlogIndex extends HTMLElement {
 		const shadowRoot = this.attachShadow({mode: 'open'});
 		shadowRoot.innerHTML = html;
 	}
-
-	connectedCallback() {
-		document.title = `Blog | ${app.title}`;
-	}
 }

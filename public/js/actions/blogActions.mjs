@@ -4,7 +4,7 @@ import config from '../common/config.mjs';
 export default {
 	
 	async signIn() {
-		dispatcher.dispatchEvent(new Event('requestSignIn'));
+		dispatcher.dispatchEvent(new CustomEvent('requestSignIn'));
 
 		let json;
 		try {
@@ -12,18 +12,18 @@ export default {
 			json = await response.json();
 		}catch(e) {
 			console.log(e);
-			return dispatcher.dispatchEvent(new Event('requestSignInFailed'));
+			return dispatcher.dispatchEvent(new CustomEvent('requestSignInFailed'));
 		}
 
-		dispatcher.dispatchEvent(new CustomEvent('requestSignInSuccessful', { detail: { json } }));
+		dispatcher.dispatchEvent(new CustomEvent('requestSignInSuccessful', { detail: json }));
 	},
 
 	signOut() {
-		dispatcher.dispatchEvent(new Event('signOut'));
+		dispatcher.dispatchEvent(new CustomEvent('signOut'));
 	},
 
 	async fetchArticles() {
-		dispatcher.dispatchEvent(new Event('fetchArticles'));
+		dispatcher.dispatchEvent(new CustomEvent('fetchArticles'));
 
 		let json;
 		try {
@@ -31,15 +31,15 @@ export default {
 			json = await response.json();
 		}catch(e) {
 			console.log(e);
-			return dispatcher.dispatchEvent(new Event('fetchArticlesFailed'));
+			return dispatcher.dispatchEvent(new CustomEvent('fetchArticlesFailed'));
 		}
 
 		json.length = Object.keys(json).length;
-		dispatcher.dispatchEvent(new CustomEvent('fetchArticlesSuccessful', { detail: { json } }));
+		dispatcher.dispatchEvent(new CustomEvent('fetchArticlesSuccessful', { detail: json }));
 	},
 
 	async fetchArticle(id) {
-		dispatcher.dispatchEvent(new Event('fetchArticle'));
+		dispatcher.dispatchEvent(new CustomEvent('fetchArticle'));
 
 		let json;
 		try {
@@ -47,9 +47,13 @@ export default {
 			json = await response.json();
 		}catch(e) {
 			console.log(e);
-			return dispatcher.dispatchEvent(new Event('fetchArticleFailed'));
+			return dispatcher.dispatchEvent(new CustomEvent('fetchArticleFailed'));
 		}
 
-		dispatcher.dispatchEvent(new CustomEvent('fetchArticleSuccessful', { detail: { json } }));
-	}
+		dispatcher.dispatchEvent(new CustomEvent('fetchArticleSuccessful', { detail: json }));
+	},
+
+	initBlogArticle() {
+		dispatcher.dispatchEvent(new CustomEvent('initBlogArticle'));
+	},
 }
